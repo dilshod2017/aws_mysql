@@ -6,13 +6,13 @@ hbs     = require("express-hbs");
 
       
     var app = express();
-    app.use(function (req, res, next) {
-        if (req.secure) {
-            next();
-        } else {
-            res.redirect('https://' + req.headers.host + req.url);
-        }
-    });
+    // app.use(function (req, res, next) {
+    //     if (req.secure) {
+    //         next();
+    //     } else {
+    //         res.redirect('https://' + req.headers.host + req.url);
+    //     }
+    // });
 // app.set('port', process.env.PORT || 3000);
 app.set('trust proxy', 1) // trust first proxy
 app.use(express.static("public"));
@@ -25,25 +25,33 @@ app.set('views','./views');
 
 const mysql = require('mysql2');
 
-// // create the connection to database
+// create the connection to database
 var connection = mysql.createConnection({
-    host: "mysql-project.ckfo5aylgcj5.us-east-2.rds.amazonaws.com",
+    host: "localhost",
     user: "root",
-    password: "Abudabi%67",
+    password: "",
     port: 3306
 });
+
+// // create the connection to database
+// var connection = mysql.createConnection({
+//     host: "mysql-project.ckfo5aylgcj5.us-east-2.rds.amazonaws.com",
+//     user: "root",
+//     password: "Abudabi%67",
+//     port: 3306
+// });
 
 
 
 app.get("/", (req, res)=>{
     connection.query(
-    'SELECT * from student.users',
+    'SELECT * from project_profile.users',
     function (err, results) {
         console.log(results);
     }
-);
-
+    );
     res.render("home")
+
 })
 // connection.end();
 const option = {
@@ -52,6 +60,5 @@ const option = {
     passphrase: "localhost"
 }
 
-// http.createServer(app).listen(3000);
-https.createServer(option, app);
+// https.createServer(option, app);
 http.createServer(app).listen(3000);
