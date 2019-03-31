@@ -12,6 +12,7 @@
   "dependencies": {
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
+    "express-hbs": "^2.0.2",
     "mssql": "^5.0.5",
     "mysql2": "^1.6.5"
   }
