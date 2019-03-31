@@ -17,9 +17,7 @@ hbs     = require("express-hbs");
 app.set('trust proxy', 1) // trust first proxy
 app.use(express.static("public"));
 
-app.engine('hbs', hbs.express4({
-    partialsDir: __dirname + '/views/partials'
-}));
+app.engine('hbs', hbs.express4());
 app.set('view engine', 'hbs');
 app.set('views','./views');
 
@@ -62,3 +60,4 @@ const option = {
 
 // https.createServer(option, app);
 http.createServer(app).listen(3000);
+console.log("connected to the server");
