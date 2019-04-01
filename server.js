@@ -24,26 +24,26 @@ app.set('views','./views');
 const mysql = require('mysql2');
 
 // create the connection to database
-var connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    port: 3306
-});
-
-// // create the connection to database
 // var connection = mysql.createConnection({
-//     host: "mysql-project.ckfo5aylgcj5.us-east-2.rds.amazonaws.com",
+//     host: "localhost",
 //     user: "root",
-//     password: "Abudabi%67",
+//     password: "",
 //     port: 3306
 // });
+
+// // create the connection to database
+var connection = mysql.createConnection({
+    host: "mysql-project.ckfo5aylgcj5.us-east-2.rds.amazonaws.com",
+    user: "root",
+    password: "Abudabi%67",
+    port: 3306
+});
 
 
 
 app.get("/", (req, res)=>{
     connection.query(
-    'SELECT * from project_profile.users',
+    'SELECT * from users.users',
     function (err, results) {
         console.log(JSON.stringify(results, undefined, 2));
         res.render("home",{student:results[0]})
