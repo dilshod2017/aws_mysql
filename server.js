@@ -43,7 +43,7 @@ var connection = mysql.createConnection({
 
 app.get("/", (req, res)=>{
     connection.query(
-    'SELECT * from project_profile.users',
+    'SELECT * from student.users',
     function (err, results) {
         console.log(results);
     }
